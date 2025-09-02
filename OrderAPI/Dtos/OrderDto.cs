@@ -1,16 +1,17 @@
- 
-namespace OrderAPI.Entity
+
+
+namespace OrderAPI.Dtos
 {
-    public class Order
+    public class OrderDto
     {
         public Guid Id { get; set; }
-        public Guid CustomerId { get; set; }
-        public Customer Customer { get; set; }
         public Guid ProductId { get; set; }
-        public Product Product { get; set; }
+        public string Name { get; set; }
+        public decimal Price { get; set; }
+        public int Stock { get; set; }
         public DateTime OrderDate { get; set; }
         public int Quantity { get; set; }
         public decimal TotalPrice { get; set; }
-        
+
     }
 }

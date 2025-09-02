@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using OrderAPI;
+using OrderAPI.AutoMapper;
+using OrderAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +13,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<OrderContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+builder.Services.AddAutoMapper(typeof(MapProfile));
+
+builder.Services.AddScoped<IOrderService, OrderService>();
 
 var app = builder.Build();
 
@@ -23,8 +28,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
- 
+
 
 app.Run();
 
- 
