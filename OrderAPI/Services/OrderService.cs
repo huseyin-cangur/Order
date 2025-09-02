@@ -23,7 +23,9 @@ namespace OrderAPI.Services
             {
                 throw new Exception("Ürün stokta yok veya yetersiz.");
             }
-            await _context.Orders.AddAsync(_mapper.Map<Entity.Order>(orderDto));
+            var order = _mapper.Map<Entity.Order>(orderDto);
+            order.OrderDate = DateTime.UtcNow;
+            await _context.Orders.AddAsync(order);
 
             product.Stock -= orderDto.Quantity;
             _context.Products.Update(product);
@@ -71,6 +73,8 @@ namespace OrderAPI.Services
                  Id = o.Id,
                  ProductId = o.ProductId,
                  Name = o.Product.Name,
+                 Price = o.Product.Price,
+                 Stock = o.Product.Stock,
                  OrderDate = o.OrderDate,
                  Quantity = o.Quantity,
                  TotalPrice = o.TotalPrice

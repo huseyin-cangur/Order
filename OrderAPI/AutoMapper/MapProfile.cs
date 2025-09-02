@@ -8,7 +8,7 @@ namespace OrderAPI.AutoMapper
 {
     public class MapProfile : Profile
     {
-        protected MapProfile()
+        public MapProfile()
         {
             CreateMap<CreateOrderDto, Order>();
             CreateMap<Order, CreateOrderDto>();

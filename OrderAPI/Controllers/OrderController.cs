@@ -1,6 +1,6 @@
 
 
-using System.Threading.Tasks;
+ 
 using Microsoft.AspNetCore.Mvc;
 using OrderAPI.Dtos;
 using OrderAPI.Services;
@@ -19,10 +19,10 @@ namespace OrderAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateOrder(CreateOrderDto createOrderDto)
+        public async Task<IActionResult> CreateOrder(CreateOrderDto createOrderDto)
         {
 
-            return Ok(_orderService.CreateOrder(createOrderDto));
+            return Ok(await _orderService.CreateOrder(createOrderDto));
         }
 
         [HttpGet]
